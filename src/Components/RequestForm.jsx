@@ -14,46 +14,46 @@ const RequestForm = () => {
     const [errors, setErrors] = useState('')
     const [datapass, setDatapass] = useState(null)
     const [file, setFile] = useState(" ");
-    
+
     const [internreport, setReport] = useState([])
     const [request, setRequest] = useState([])
     const location = useLocation()
     const name = location.state?.name
     const [postdata, setPostdata] = useState({
-        
-              "id": 0,
-              "Student": " ",
-              "Start date": " ",
-              "End date": " ",
-              "Duration(in weeks)": 0,
-              "Year of study": " ",
-              "Special lab": " ",
-              "Sector": " ",
-              "Industry Address Line1": " ",
-              "City": " ",
-              "State": " ",
-              "Postal Code": 0,
-              "Country": " ",
-              "Industry website": " ",
-              "Industry contact details": " ",
-              "IQAC Verification": " ",
-              "rewards": " ",
-              "elective chosen": " ",
-              "status": " ",
-              "timestamp": " ",
-              "fileData": {
-                "id": 0,
-                "name": " ",
-                "size":0,
-                "type": "application/pdf",
-                "lastModified": 0,
-                "lastModifiedDate": " ",
-                "webkitRelativePath": ""
-              },
-              "remarks": " ",
-              "path": " "
-            }
-          
+
+        "id": 0,
+        "Student": " ",
+        "Start date": " ",
+        "End date": " ",
+        "Duration(in weeks)": 0,
+        "Year of study": " ",
+        "Special lab": " ",
+        "Sector": " ",
+        "Industry Address Line1": " ",
+        "City": " ",
+        "State": " ",
+        "Postal Code": 0,
+        "Country": " ",
+        "Industry website": " ",
+        "Industry contact details": " ",
+        "IQAC Verification": " ",
+        "rewards": " ",
+        "elective chosen": " ",
+        "status": " ",
+        "timestamp": " ",
+        "fileData": {
+            "id": 0,
+            "name": " ",
+            "size": 0,
+            "type": "application/pdf",
+            "lastModified": 0,
+            "lastModifiedDate": " ",
+            "webkitRelativePath": ""
+        },
+        "remarks": " ",
+        "path": " "
+    }
+
     )
 
 
@@ -94,10 +94,10 @@ const RequestForm = () => {
             })
             .catch(err => console.log(err))
 
-          axios.get('http://127.0.0.1:3000/get-requests').then(res => {
-                console.log("Requests", res.data)
-                setRequest(res.data)
-            })
+        axios.get('http://127.0.0.1:3000/get-requests').then(res => {
+            console.log("Requests", res.data)
+            setRequest(res.data)
+        })
             .catch(err => console.log(err))
     })
     const newdata = internreport.filter((report) => report.Student.includes(name))
@@ -147,29 +147,18 @@ const RequestForm = () => {
 
         const formData = new FormData();
 
-        
+
         console.log(student.id)
         formData.append("id", student.id);
         formData.append("file", file);
         console.log(student.id, file);
+        if (file.name == null) {
+            err.File = "Please Upload the file"
+        }
 
-        const result = await axios.post(
-            "http://localhost:3000/upload-files",
-            formData,
-            {
-              headers: { "Content-Type": "multipart/form-data" },
-            }
-          );
-          let path;
-          console.log("Upload result is:",result);
-          if (result.data.status == "ok") {
-            alert("Uploaded Successfully!!!");
-            path = result.data.filepath
-            console.log(path)
-          }
-          
 
-        
+
+
         console.log("File name is", file.name)
         const now = new Date();
         const currentDateTime = now.toLocaleString();
@@ -182,26 +171,41 @@ const RequestForm = () => {
             "lastModified": file.lastModified,
             "lastModifiedDate": file.lastModifiedDate,
             "webkitRelativePath": file.webkitRelativePath,
-            
+
 
         };
-        const obj = { "rewards": rewards, "elective chosen": elective, "status": "in-progress", "timestamp": currentDateTime, "fileData": formDataValues, "remarks": " ", "path": path };
-        const merged = { ...student, ...obj };
-        console.log("Merged is:", merged);
-        setDatapass({ ...merged })
-        if (file.name == null) {
-            err.File = "Please Upload the file"
-        }
+        
+
         if (Object.keys(err).length > 0) {
             setErrors({ ...err })
             return
         }
-            setPostdata({...merged})
-            const res = await axios.post('http://127.0.0.1:3000/add-request', {merged})
-            console.log("Post created:", res.data)
 
-           
-        
+        const result = await axios.post(
+            "http://localhost:3000/upload-files",
+            formData,
+            {
+                headers: { "Content-Type": "multipart/form-data" },
+            }
+        );
+        let path;
+
+        console.log("Upload result is:", result);
+        if (result.data.status == "ok" ) {
+            alert("Uploaded Successfully!!!");
+            path = result.data.filepath
+            console.log(path)
+        }
+        const obj = { "rewards": rewards, "elective chosen": elective, "status": "in-progress", "timestamp": currentDateTime, "fileData": formDataValues, "remarks": " ", "path": path };
+        const merged = { ...student, ...obj };
+        console.log("Merged is:", merged);
+        setDatapass({ ...merged })
+        setPostdata({ ...merged })
+        const res = await axios.post('http://127.0.0.1:3000/add-request', { merged })
+        console.log("Post created:", res.data)
+
+
+
         navigate('/dashboard/your-request', { state: merged })
 
     }

@@ -186,7 +186,7 @@ const RejectedReq = () => {
     return (
         <>
             <div className="content-container">
-                <h1>Accepted Requests</h1>
+                <h1>Rejected Requests</h1>
                 <div className="search-bar">
                     <FontAwesomeIcon icon={faSearch} />
 

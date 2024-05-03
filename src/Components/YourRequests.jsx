@@ -63,7 +63,7 @@ const YourRequests = () => {
                                 <td>{storedState["IQAC Verification"]}</td>
                                 <td>{storedState.rewards}</td>
                                 <td>{storedState["elective chosen"]}</td>
-                                {/* <td>{storedState.fileData.name}</td> */}
+                                <td>{storedState.fileData.name}</td>
                                 {/* <td>{storedState.status}</td> */}
                             </tr>
                         </tbody>
