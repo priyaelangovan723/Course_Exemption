@@ -1,0 +1,182 @@
+*{
+  box-sizing: content-box;
+}
+.main-container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* column-gap: 75px; */
+  font-family: 'Roboto',sans-serif;
+  /* background-color: aliceblue; */
+}
+.side-container{
+  background-color: white;
+  height: 100vh;
+  width: 275px;
+  border: 10px solid white;
+  box-shadow: 30px;
+  border-radius: 10px;
+  padding: 15px;
+}
+.dashboard{
+  
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  position: relative;
+  column-gap: 10px;
+  
+  display: inline-flexbox
+}
+.dashboard:hover{
+  cursor: pointer;
+  color: black;
+  background-color:rgb(224,240,255);
+  border-radius: 5px;
+  padding-right: 10px;
+  
+}
+.dashboard0{
+  
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  position: relative;
+  column-gap: 10px;
+  
+  display: inline-flexbox
+}
+.dashboard0:hover{
+  cursor: pointer;
+  color: black;
+  background-color:rgb(224,240,255);
+  border-radius: 5px;
+  
+}
+.dashboard-heading{
+  font-size: 16px ;
+  color: black;
+  margin-top: 0px;
+}
+.logo{
+  font-size: 25px;
+  margin-top: 12px;
+  
+}
+.logo:hover{
+  cursor: pointer;
+  color: rgb(236,235,255);
+}
+#dash{
+  margin-top: 50px;
+}
+.content-container{
+  background-color: rgb(238,242,246);
+  height: 130vh;
+  width: 100%;
+  border: 3px solid white;
+  border-radius: 10px; 
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 0;
+  
+}
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .logo1{
+    font-size: 22px;
+    margin-top: 14px;
+    margin-left: 10px;
+  }
+  .logo2{
+    font-size: 22px;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+.contents{
+    height: 250px;
+    width : 1050px;
+    background-color: none;
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+    justify-content: space-between;
+}
+.content-card{
+  height: 160px;
+  width: 2800px;
+  background-color:white;
+  border-radius: 10px;
+  box-shadow: 1rem;
+  display: flex;
+  row-gap: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  box-shadow: 5px white;
+  border:1px solid aliceblue;
+}
+.name{
+  font-size: 20px;
+  color: lightslategray;
+  margin-bottom: 10px;
+  display: inline;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+#short-text{
+  display: inline-block;
+}
+.add-request{
+  background-color:rgb(14,120,220);
+  height: 50px;
+  width: 300px;
+  margin-left: 735px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 20px;
+  color: white;
+  border-radius: 15px;
+  
+}
+.plus-icon{
+  font-size: 30px;
+  color: white;
+  margin-left: 50px;
+ 
+}
+#request{
+  color: white;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.selected {
+  background-color:rgb(224,240,255);
+  padding-right: 10px;
+}
+
+#req1-btn{
+    background-color: rgb(14,120,220);
+    height: 48px;
+    width: 185px;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+}
